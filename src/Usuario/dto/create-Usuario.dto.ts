@@ -4,6 +4,7 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
+  IsNotEmpty,
   IsString,
   IsStrongPassword,
   Matches,
@@ -19,6 +20,7 @@ export class CreateUsuarioDto {
    * - Mínimo de 3 caracteres
    * - Máximo de 255 caracteres
    */
+  @IsNotEmpty({ message: 'campo obrigatorio' })
   @IsString({ message: 'O nome deve ser uma string' })
   @MinLength(3, { message: 'O nome deve ter pelo menos 3 caracteres' })
   @MaxLength(255, { message: 'O nome não pode ter mais de 255 caracteres' })
@@ -30,6 +32,7 @@ export class CreateUsuarioDto {
    * - Máximo de 255 caracteres
    * - Regex opcional para reforçar formato de email
    */
+  @IsNotEmpty({ message: 'campo obrigatorio' })
   @IsEmail()
   @IsString({ message: 'O email deve ser uma string' })
   @MaxLength(255, { message: 'O email não pode ter mais de 255 caracteres' })
@@ -47,6 +50,7 @@ export class CreateUsuarioDto {
    * - Pelo menos 1 número
    * - Pelo menos 1 símbolo especial
    */
+  @IsNotEmpty({ message: 'campo obrigatorio' })
   @IsStrongPassword(
     {
       minLength: 8,
@@ -68,6 +72,7 @@ export class CreateUsuarioDto {
    * - Valores possíveis: ADMIN, RH, FUNCIONARIO
    * - Validação via enum para garantir que o valor enviado seja válido
    */
+  @IsNotEmpty({ message: 'campo obrigatorio' })
   @IsEnum(PapelUsuario, {
     message: 'O papel deve ser ADMIN, RH ou FUNCIONARIO',
   })
@@ -79,6 +84,7 @@ export class CreateUsuarioDto {
    * - Recebe um boolean (true ou false)
    * - Usa @Type(() => Boolean) para transformar valores recebidos via JSON
    */
+  @IsNotEmpty({ message: 'campo obrigatorio' })
   @Type(() => Boolean)
   @IsBoolean({ message: 'O campo ativo deve ser verdadeiro ou falso' })
   ativo: boolean;
@@ -90,6 +96,7 @@ export class CreateUsuarioDto {
    * - Usa @Type(() => Date) para transformar strings em Date
    * - Formato esperado: yyyy/mm/dd
    */
+  @IsNotEmpty({ message: 'campo obrigatorio' })
   @Type(() => Date)
   @IsDate({ message: 'Data inválida, padrão: yyyy/mm/dd' })
   dataAdimicao: Date;
