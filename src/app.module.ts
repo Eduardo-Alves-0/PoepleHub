@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsuarioController } from './Usuario/controllers/usuario.controller';
-import { UsuarioService } from './Usuario/services/usuario.service';
 import { FeriasController } from './ferias/controllers/ferias.controller';
 import { FeriasService } from './ferias/services/ferias.service';
 import { FuncionarioController } from './funcionario/controllers/funcionario.controller';
 import { FuncionarioService } from './funcionario/services/funcionario.service';
+import { UsuarioController } from './usuario/controllers/usuario.controller';
+import { UsuarioService } from './usuario/services/usuario.service';
 
 @Module({
   imports: [
