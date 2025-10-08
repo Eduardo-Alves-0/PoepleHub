@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Funcionario } from '../../funcionario/entities/funcionario.entity';
 
 export enum NivelCargo {
   JUNIOR = 'JUNIOR',
@@ -65,4 +66,7 @@ export class Cargo {
   ehDiretor(): boolean {
     return this.nivel === NivelCargo.DIRETOR;
   }
+
+  @OneToMany(() => Funcionario, (funcionario) => funcionario.cargo)
+  funcionario: Funcionario;
 }

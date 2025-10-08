@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Funcionario } from '../../funcionario/entities/funcionario.entity';
 
 export enum StatusFolha {
   PENDENTE = 'PENDENTE',
@@ -46,4 +47,6 @@ export class FolhaPagamento {
     nullable: false,
   })
   status: StatusFolha;
+  @ManyToOne(() => Funcionario, (funcionario) => funcionario.folhaPagamento)
+  funcionario: Funcionario;
 }

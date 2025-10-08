@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Funcionario } from '../../funcionario/entities/funcionario.entity';
 
 // Este enum define os papéis possíveis de um usuário
 export enum PapelUsuario {
@@ -45,4 +46,7 @@ export class Usuario {
 
   @Column()
   dataAdimicao: Date;
+
+  @OneToOne(() => Funcionario, (funcionario) => funcionario.usuario)
+  funcionario: Funcionario;
 }

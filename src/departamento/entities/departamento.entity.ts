@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Funcionario } from '../../funcionario/entities/funcionario.entity';
 
 @Entity({ name: 'tb_departamento' })
 export class Departamento {
@@ -21,4 +22,7 @@ export class Departamento {
 
   @Column({ nullable: false })
   dataCriacao: Date;
+
+  @OneToMany(() => Funcionario, (funcionario) => funcionario.departamento)
+  funcionario: Funcionario;
 }

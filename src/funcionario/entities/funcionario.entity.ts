@@ -1,4 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Cargo } from '../../cargo/entities/cargo.entity';
+import { Departamento } from '../../departamento/entities/departamento.entity';
+import { Ferias } from '../../ferias/entities/ferias.entity';
+import { FolhaPagamento } from '../../folhaPagamento/entities/folhaPagamento.entity';
+import { Usuario } from '../../usuario/entities/usuario.entity';
 
 export enum StatusFuncionario {
   ATIVO = 'ATIVO',
@@ -8,7 +20,7 @@ export enum StatusFuncionario {
 }
 
 @Entity({ name: 'tb_funcionario' })
-export class funcionario {
+export class Funcionario {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -65,4 +77,22 @@ export class funcionario {
   estaAfastado(): boolean {
     return this.status === StatusFuncionario.AFASTADO;
   }
+
+  @OneToOne(() => Usuario, (usuario) => usuario.funcionario)
+  usuario: Usuario;
+
+  @OneToMany(() => Departamento, (departamento) => departamento.funcionario)
+  departamento: Departamento;
+
+  @ManyToOne(() => Cargo, (cargo) => cargo.funcionario)
+  cargo: Cargo;
+
+  @OneToMany(
+    () => FolhaPagamento,
+    (folhaPagamento) => folhaPagamento.funcionario,
+  )
+  folhaPagamento: FolhaPagamento;
+
+  @OneToMany(() => Ferias, (ferias) => ferias.funcionario)
+  ferias: Ferias;
 }

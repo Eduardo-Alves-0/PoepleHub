@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Funcionario } from '../../funcionario/entities/funcionario.entity';
 
 export enum StatusFerias {
   SOLICITADO = 'SOLICITADO',
@@ -44,4 +45,7 @@ export class Ferias {
 
   @Column({ type: 'timestamp', nullable: true })
   dataAprovacao: Date;
+
+  @ManyToOne(() => Funcionario, (funcionario) => funcionario.ferias)
+  funcionario: Funcionario;
 }
