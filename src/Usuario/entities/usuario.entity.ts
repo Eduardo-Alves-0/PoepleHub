@@ -7,15 +7,15 @@ export enum PapelUsuario {
   FUNCIONARIO = 'FUNCIONARIO',
 }
 
-@Entity('tb_usuario')
+@Entity({ name: 'tb_usuario' })
 export class Usuario {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   email: string;
 
-  @Column()
+  @Column({ nullable: false })
   senha: string;
 
   /**
@@ -26,6 +26,7 @@ export class Usuario {
     type: 'enum',
     enum: PapelUsuario,
     default: PapelUsuario.FUNCIONARIO,
+    nullable: false,
   })
   papel: PapelUsuario;
 
