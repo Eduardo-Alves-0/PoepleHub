@@ -7,45 +7,46 @@ export enum StatusFuncionario {
   AFASTADO = 'AFASTADO',
 }
 
-@Entity('tb_funcionario')
+@Entity({ name: 'tb_funcionario' })
 export class funcionario {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   nome: string;
 
-  @Column()
+  @Column({ nullable: false })
   cpf: string;
 
-  @Column()
+  @Column({ nullable: false })
   dataNascimento: Date;
 
-  @Column()
+  @Column({ nullable: false })
   dataAdmissao;
 
-  @Column()
+  @Column({ nullable: false })
   telefone: string;
 
-  @Column()
+  @Column({ nullable: false })
   endereco: string;
 
-  @Column()
+  @Column({ nullable: false })
   cidade: string;
 
-  @Column()
+  @Column({ nullable: false })
   estado: string;
 
-  @Column()
+  @Column({ nullable: false })
   cep: number;
 
-  @Column()
+  @Column({ nullable: false })
   salarioBase: number;
 
   @Column({
     type: 'enum',
     enum: StatusFuncionario,
     default: StatusFuncionario.ATIVO,
+    nullable: false,
   })
   status: StatusFuncionario;
 
